@@ -14,7 +14,8 @@ public class User {
             throw new IllegalArgumentException("Invalid name");
         }
 
-        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+                || email.length() > 100) {
             throw new IllegalArgumentException("Invalid email");
         }
 
