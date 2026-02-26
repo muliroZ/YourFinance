@@ -37,6 +37,7 @@ public class JpaUserRepository implements UserRepository {
     public Optional<User> findByEmail(String email) {
         UserEntity userEntity = repository.findByEmail(email);
         User user = new User(
+                userEntity.getId(),
                 userEntity.getName(),
                 userEntity.getEmail(),
                 userEntity.getPassword()
