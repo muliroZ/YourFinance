@@ -5,7 +5,7 @@ function AppRoutes() {
     return(
         <BrowserRouter>
             <Routes>
-                <Route path={"/login"} element={<AuthPage />} />
+                <Route path={"/auth"} element={<AuthPage />} />
             </Routes>
         </BrowserRouter>
     )

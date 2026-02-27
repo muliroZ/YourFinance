@@ -12,7 +12,7 @@ function AuthPage() {
     const navigate = useNavigate()
 
     function handleChange(e) {
-        setForm({...form, [e.target.name]: [e.target.value]})
+        setForm({...form, [e.target.name]: e.target.value})
     }
 
     async function handleSubmit(e) {
@@ -20,11 +20,18 @@ function AuthPage() {
 
         try {
             if (isLogin) {
-                const data = await login(form.email, form.password)
+                const data = await login({
+                    email: form.email,
+                    password: form.password
+                })
                 loginUser(data.token)
                 navigate("/")
             } else {
-                await register(form)
+                await register({
+                    name: form.name,
+                    email: form.email,
+                    password: form.password
+                })
                 setIsLogin(true)
             }
         } catch (err) {
