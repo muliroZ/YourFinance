@@ -2,7 +2,9 @@ import {useContext, useState} from "react";
 import {AuthContext} from "../auth/AuthContext.jsx";
 import {useNavigate} from "react-router-dom";
 import {login, register} from "../auth/authService.js";
-import "./AuthPage.css"
+import styles from "./AuthPage.module.css"
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
 
 function AuthPage() {
     const [isLogin, setIsLogin] = useState(true)
@@ -40,34 +42,40 @@ function AuthPage() {
     }
 
     return (
-        <div className={"auth-card"}>
-            <h2>{isLogin ? "Login" : "Register"}</h2>
-            <hr/>
-            <form onSubmit={handleSubmit} className={"auth-form"}>
-                {!isLogin && (
-                    <>
-                        <label htmlFor={"name"}>Name</label>
-                        <input id={"name"} name={"name"} placeholder={"My name here"} onChange={handleChange}/>
-                    </>
-                )}
+        <>
+            <Header/>
+            <div className={styles.authContainer}>
+                <div className={styles.authCard}>
+                    <h2 className={styles.cardTitle}>{isLogin ? "Login" : "Register"}</h2>
+                    <hr/>
+                    <form onSubmit={handleSubmit} className={styles.authForm}>
+                        {!isLogin && (
+                            <>
+                                <label htmlFor={"name"}>Name</label>
+                                <input id={"name"} name={"name"} placeholder={"My name here"} onChange={handleChange}/>
+                            </>
+                        )}
 
-                <label htmlFor={"email"}>Email</label>
-                <input id={"email"} name={"email"} placeholder={"yourfinance@email.com"} onChange={handleChange}/>
+                        <label htmlFor={"email"}>Email</label>
+                        <input id={"email"} name={"email"} placeholder={"yourfinance@email.com"} onChange={handleChange}/>
 
-                <label htmlFor={"password"}>Password</label>
-                <input id={"password"} name={"password"} type={"password"} placeholder={"******"} onChange={handleChange}/>
+                        <label htmlFor={"password"}>Password</label>
+                        <input id={"password"} name={"password"} type={"password"} placeholder={"******"} onChange={handleChange}/>
 
-                <button type={"submit"}>
-                    {isLogin ? "Login" : "Register"}
-                </button>
-            </form>
+                        <button type={"submit"}>
+                            {isLogin ? "Login" : "Register"}
+                        </button>
+                    </form>
 
-            <hr/>
+                    <hr/>
 
-            <button className={"auth-button"} onClick={() => setIsLogin(!isLogin)}>
-                {isLogin ? "Create account" : "I have an account"}
-            </button>
-        </div>
+                    <button className={styles.authButton} onClick={() => setIsLogin(!isLogin)}>
+                        {isLogin ? "Create account" : "I have an account"}
+                    </button>
+                </div>
+            </div>
+            <Footer/>
+        </>
     )
 }
 
