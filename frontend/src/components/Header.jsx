@@ -1,7 +1,11 @@
 import {Link} from "react-router-dom"
+import { useContext } from "react"
+import { AuthContext } from "../auth/AuthContext"
 import styles from "./Header.module.css"
 
 function Header() {
+
+    const {user, logout} = useContext(AuthContext)
 
     return (
         <header className={styles.header}>
@@ -13,7 +17,13 @@ function Header() {
             </div>
             <nav className={styles.navLinks}>
                 <Link to={"/"}>Home</Link>
-                <Link to={"/auth"}>Login</Link>
+                {user ? (
+                    <button className={styles.logoutBtn} onClick={logout}>
+                        Logout
+                    </button>
+                ) : (
+                    <Link to={"/auth"}>Login</Link>
+                )}
             </nav>
         </header>
     )

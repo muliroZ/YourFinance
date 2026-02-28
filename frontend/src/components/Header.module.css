@@ -47,3 +47,17 @@
 .navLinks a:hover {
     color: #007bff;
 }
+
+.logoutBtn {
+    background: none;
+    border: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.logoutBtn:hover {
+    color: #007bff;
+}
