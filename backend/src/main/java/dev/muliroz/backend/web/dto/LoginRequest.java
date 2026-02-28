@@ -1,6 +1,6 @@
 package dev.muliroz.backend.web.dto;
 
-public record LoginRequestDTO (
+public record LoginRequest(
         String email,
         String password
 ) {}

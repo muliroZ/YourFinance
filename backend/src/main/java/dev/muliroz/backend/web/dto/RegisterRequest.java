@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record RegisterRequestDTO (
+public record RegisterRequest(
         @NotBlank(message = "Name field is mandatory")
         @Size(min = 2, max = 50, message = "Name field cannot exceed 50 characters")
         String name,
@@ -19,7 +19,7 @@ public record RegisterRequestDTO (
         @Size(min = 6, message = "Password field needs at least 6 characters")
         String password
 ) {
-    public static RegisterUserInput toInput(RegisterRequestDTO dto) {
+    public static RegisterUserInput toInput(RegisterRequest dto) {
         return new RegisterUserInput(
                 dto.name,
                 dto.email,

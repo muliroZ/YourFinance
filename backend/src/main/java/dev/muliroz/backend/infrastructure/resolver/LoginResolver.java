@@ -3,9 +3,8 @@ package dev.muliroz.backend.infrastructure.resolver;
 import dev.muliroz.backend.application.user.login.LoginInput;
 import dev.muliroz.backend.application.user.login.LoginOutput;
 import dev.muliroz.backend.application.user.login.LoginUseCase;
-import dev.muliroz.backend.infrastructure.persistence.model.UserEntity;
-import dev.muliroz.backend.web.dto.LoginRequestDTO;
-import dev.muliroz.backend.web.dto.LoginResponseDTO;
+import dev.muliroz.backend.web.dto.LoginRequest;
+import dev.muliroz.backend.web.dto.LoginResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,7 +22,7 @@ public class LoginResolver {
         this.authenticationManager = authenticationManager;
     }
 
-    public LoginResponseDTO login(LoginRequestDTO dto) {
+    public LoginResponse login(LoginRequest dto) {
         Authentication auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         dto.email(),
@@ -36,6 +35,6 @@ public class LoginResolver {
         LoginInput input = new LoginInput(user.getUsername(), dto.password());
         LoginOutput output = loginUseCase.execute(input);
 
-        return new LoginResponseDTO(output.token());
+        return new LoginResponse(output.token());
     }
 }
