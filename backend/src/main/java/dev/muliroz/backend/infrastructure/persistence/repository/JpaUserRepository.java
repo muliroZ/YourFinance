@@ -6,6 +6,7 @@ import dev.muliroz.backend.infrastructure.persistence.model.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class JpaUserRepository implements UserRepository {
@@ -44,5 +45,10 @@ public class JpaUserRepository implements UserRepository {
         );
 
         return Optional.of(user);
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return repository.existsById(id);
     }
 }
