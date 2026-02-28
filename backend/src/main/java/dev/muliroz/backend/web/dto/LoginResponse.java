@@ -1,5 +1,5 @@
 package dev.muliroz.backend.web.dto;
 
-public record LoginResponseDTO (
+public record LoginResponse(
         String token
 ) {}
