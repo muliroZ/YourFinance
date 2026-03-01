@@ -23,8 +23,11 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@Valid @RequestBody CreateCategoryRequest request) {
-        createCategoryResolver.create(request);
+    public ResponseEntity<Void> create(
+            @Valid @RequestBody CreateCategoryRequest request,
+            @AuthenticationPrincipal UserEntity user
+    ) {
+        createCategoryResolver.create(user.getId(), request);
         return ResponseEntity.status(201).build();
     }
 
