@@ -6,6 +6,7 @@ import CategoryForm from "./CategoryForm.jsx";
 
 function TransactionForm({ onTransactionCreated }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [refreshKey, setRefreshKey] = useState(0)
     const [categories, setCategories] = useState([])
     const [form, setForm] = useState({
         amount: "",
@@ -25,10 +26,11 @@ function TransactionForm({ onTransactionCreated }) {
             }
         }
         fetchCategories()
-    }, []);
+    }, [refreshKey]);
 
     function handleCategoryCreated() {
         setIsModalOpen(false)
+        setRefreshKey(key => key + 1)
     }
 
     const handleChange = (e) => {

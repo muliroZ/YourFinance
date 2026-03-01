@@ -1,17 +1,15 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState } from "react"
 
 export const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null)
-
-    useEffect(() => {
+    const [user, setUser] = useState(() => {
         const token = localStorage.getItem("token")
         if (token) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setUser({ token })
+            return{ token }
         }
-    }, []);
+        return null
+    })
 
     function loginUser(token) {
         localStorage.setItem("token", token)

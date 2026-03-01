@@ -11,7 +11,7 @@ CREATE TABLE transactions(
     user_id UUID NOT NULL,
     category_id UUID NOT NULL,
     amount DECIMAL(19, 2) NOT NULL CHECK ( amount > 0 ),
-    type VARCHAR(20) NOT NULL CHECK ( type IN ('INCOME', 'EXPEND')),
+    type VARCHAR(20) NOT NULL CHECK ( type IN ('INCOME', 'EXPENSE')),
     date DATE NOT NULL,
     description VARCHAR(255),
     idempotency_key UUID NOT NULL UNIQUE,
