@@ -1,0 +1,28 @@
+.widgetCard {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.value {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.neutral { color: #333; }
+.positive { color: #28a745; }
+.negative { color: #d9534f; }
