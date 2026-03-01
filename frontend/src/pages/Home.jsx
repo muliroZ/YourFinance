@@ -4,15 +4,33 @@ import styles from "./Home.module.css"
 import KpiWidget from "../components/KpiWidget.jsx";
 import WalletCard from "../components/WalletCard.jsx";
 import StatementCard from "../components/StatementCard.jsx";
+import {useState} from "react";
+import TransactionForm from "../components/TransactionForm.jsx";
 
 function Home() {
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [refreshKey, setRefreshKey] = useState(0)
+
+    function handleTransactionCreated() {
+        setIsModalOpen(false)
+        setRefreshKey(key => key + 1)
+    }
+
     return (
         <>
             <Header/>
             <main className={styles.mainContainer}>
                 <section className={styles.welcomeSection}>
-                    <h1>Resumo Financeiro</h1>
-                    <p>Acompanhe o saldo das suas carteiras e seus últimos extratos.</p>
+                    <div className={styles.welcomeText}>
+                        <h1>Resumo Financeiro</h1>
+                        <p>Acompanhe o saldo das suas carteiras e seus últimos extratos.</p>
+                    </div>
+                    <button
+                        className={styles.newTransactionBtn}
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        + Nova Transação
+                    </button>
                 </section>
 
                 <section className={styles.kpiSection}>
@@ -23,9 +41,25 @@ function Home() {
 
                 <section className={styles.dashboardGrid}>
                     <WalletCard/>
-                    <StatementCard/>
+                    <StatementCard refreshTrigger={refreshKey}/>
                 </section>
             </main>
+
+            {isModalOpen && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
+                        <button
+                            className={styles.closeModalBtn}
+                            onClick={() => setIsModalOpen(false)}
+                        >
+                            &times;
+                        </button>
+
+                        <TransactionForm onTransactionCreated={handleTransactionCreated}/>
+                    </div>
+                </div>
+            )}
+
             <Footer/>
         </>
     )

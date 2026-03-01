@@ -6,16 +6,19 @@
 }
 
 .welcomeSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 30px;
 }
 
-.welcomeSection h1 {
+.welcomeText h1 {
     font-size: 28px;
     color: #222;
     margin-bottom: 8px;
 }
 
-.welcomeSection p {
+.welcomeText p {
     color: #666;
     font-size: 16px;
 }
@@ -31,4 +34,74 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 25px;
+}
+
+.newTransactionBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+}
+
+.newTransactionBtn:hover {
+    background-color: #218838;
+}
+
+.newTransactionBtn:active {
+    transform: scale(0.97);
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.modalContent {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 20px;
+    animation: slideUp 0.3s ease-out;
+}
+
+.closeModalBtn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.closeModalBtn:hover {
+    color: #333;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

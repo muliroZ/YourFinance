@@ -27,8 +27,12 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@Valid @RequestBody CreateTransactionRequest request) {
-        createResolver.create(request);
+    public ResponseEntity<Void> create(
+            @Valid @RequestBody CreateTransactionRequest request,
+            @RequestHeader("Idempotency-Key") String idempotencyKey,
+            @AuthenticationPrincipal UserEntity user
+    ) {
+        createResolver.create(user.getId(), request, idempotencyKey);
         return ResponseEntity.status(201).build();
     }
 
