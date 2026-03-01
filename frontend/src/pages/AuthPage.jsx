@@ -46,31 +46,31 @@ function AuthPage() {
             <Header/>
             <div className={styles.authContainer}>
                 <div className={styles.authCard}>
-                    <h2 className={styles.cardTitle}>{isLogin ? "Login" : "Register"}</h2>
+                    <h2 className={styles.cardTitle}>{isLogin ? "Login" : "Cadastro"}</h2>
                     <hr/>
                     <form onSubmit={handleSubmit} className={styles.authForm}>
                         {!isLogin && (
                             <>
-                                <label htmlFor={"name"}>Name</label>
-                                <input id={"name"} name={"name"} placeholder={"My name here"} onChange={handleChange}/>
+                                <label htmlFor={"name"}>Nome</label>
+                                <input id={"name"} name={"name"} placeholder={"Seu nome aqui"} onChange={handleChange}/>
                             </>
                         )}
 
                         <label htmlFor={"email"}>Email</label>
                         <input id={"email"} name={"email"} placeholder={"yourfinance@email.com"} onChange={handleChange}/>
 
-                        <label htmlFor={"password"}>Password</label>
+                        <label htmlFor={"password"}>Senha</label>
                         <input id={"password"} name={"password"} type={"password"} placeholder={"******"} onChange={handleChange}/>
 
                         <button type={"submit"}>
-                            {isLogin ? "Login" : "Register"}
+                            {isLogin ? "Entrar" : "Cadastrar"}
                         </button>
                     </form>
 
                     <hr/>
 
                     <button className={styles.authButton} onClick={() => setIsLogin(!isLogin)}>
-                        {isLogin ? "Create account" : "I have an account"}
+                        {isLogin ? "Criar conta" : "Já tenho uma conta"}
                     </button>
                 </div>
             </div>
