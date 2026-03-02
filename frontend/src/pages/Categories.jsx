@@ -56,7 +56,7 @@ function Categories() {
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Ações</th>
+                                    <th className={styles.actionsColumn}>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,13 +67,15 @@ function Categories() {
                                         </td>
                                     </tr>
                                 ) : (
-                                    <tr>
-                                        <td>{categories.name}</td>
-                                        <td className={styles.actionsColumn}>
-                                            <button className={styles.editBtn}>Editar</button>
-                                            <button className={styles.deleteBtn}>Excluir</button>
-                                        </td>
-                                    </tr>
+                                    categories.map(c => (
+                                        <tr key={c.id}>
+                                            <td>{c.name}</td>
+                                            <td className={styles.actionsColumn}>
+                                                <button className={styles.editBtn}>Editar</button>
+                                                <button className={styles.deleteBtn}>Excluir</button>
+                                            </td>
+                                        </tr>
+                                    ))
                                 )}
                             </tbody>
                         </table>

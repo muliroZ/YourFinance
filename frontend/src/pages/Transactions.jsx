@@ -59,7 +59,7 @@ function Transactions() {
                                     <th>Descrição</th>
                                     <th>Tipo</th>
                                     <th>Valor (R$)</th>
-                                    <th>Ações</th>
+                                    <th className={styles.actionsColumn}>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,7 +71,7 @@ function Transactions() {
                                     </tr>
                                 ) : (
                                     transactions.map(tx => (
-                                        <tr>
+                                        <tr key={tx.id}>
                                             <td>{new Date(tx.date).toLocaleDateString("pt-BR")}</td>
                                             <td className={styles.descCell}>{tx.description}</td>
                                             <td>
