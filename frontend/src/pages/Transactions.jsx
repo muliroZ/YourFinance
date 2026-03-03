@@ -72,7 +72,7 @@ function Transactions() {
                                 ) : (
                                     transactions.map(tx => (
                                         <tr key={tx.id}>
-                                            <td>{new Date(tx.date).toLocaleDateString("pt-BR")}</td>
+                                            <td>{new Date(tx.date).toLocaleDateString("pt-BR", { timeZone: 'UTC' })}</td>
                                             <td className={styles.descCell}>{tx.description}</td>
                                             <td>
                                                 <span className={tx.type === 'EXPENSE' ? styles.badgeExpense : styles.badgeIncome}>

@@ -39,7 +39,7 @@ function StatementCard({ refreshTrigger }) {
                             <div className={styles.transactionInfo}>
                                 <span className={styles.description}>{tx.description}</span>
                                 <span className={styles.date}>
-                                    {new Date(tx.date).toLocaleDateString('pt-BR')}
+                                    {new Date(tx.date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}
                                 </span>
                             </div>
                             <span className={`${styles.amount} ${tx.type === 'EXPENSE' ? styles.expense : styles.income}`}>
