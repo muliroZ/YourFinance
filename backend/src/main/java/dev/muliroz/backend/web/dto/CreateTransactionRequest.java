@@ -15,5 +15,5 @@ public record CreateTransactionRequest(
         @Positive(message = "The amount should be greater than zero") BigDecimal amount,
         @NotNull(message = "Transaction type is mandatory") TransactionType type,
         @PastOrPresent(message = "Transaction date shouldn't be in the future") LocalDate date,
-        @Size(max = 255, message = "Description lenght cannot exceed 255 characters") String description
+        @Size(max = 255, message = "Description length cannot exceed 255 characters") String description
 ) {}

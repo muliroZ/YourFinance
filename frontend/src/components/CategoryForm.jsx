@@ -1,4 +1,4 @@
-import {create, list} from "../services/categoryService.js";
+import {createCategory, listCategories} from "../services/categoryService.js";
 import {useEffect, useState} from "react";
 import ItemPanel from "./ItemPanel.jsx";
 import styles from './CategoryForm.module.css'
@@ -12,7 +12,7 @@ function CategoryForm({ onCategoryCreated }) {
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const data = await list()
+                const data = await listCategories()
                 setCategories(data.categories)
             } catch (error) {
                 console.error("Erro ao carregar categorias", error)
@@ -31,7 +31,7 @@ function CategoryForm({ onCategoryCreated }) {
         try {
             const payload = { ...form }
 
-            await create(payload)
+            await createCategory(payload)
             alert("Categoria criada com sucesso!")
 
             if (onCategoryCreated) onCategoryCreated()

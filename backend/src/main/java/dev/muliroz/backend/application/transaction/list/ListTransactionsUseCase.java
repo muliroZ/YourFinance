@@ -23,6 +23,7 @@ public class ListTransactionsUseCase {
 
         List<Transaction> transactions = transactionRepository.search(
                 input.userId(),
+                input.categoryId(),
                 input.type(),
                 input.startDate(),
                 input.endDate(),

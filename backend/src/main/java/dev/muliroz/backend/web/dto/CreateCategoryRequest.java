@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public record CreateCategoryRequest(
         @NotBlank(message = "Name is mandatory")
-        @Size(max = 50, message = "Name lenght cannot exceed 50 characters")
+        @Size(max = 50, message = "Name length cannot exceed 50 characters")
         String name
 ) {}

@@ -13,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/transaction")
@@ -40,12 +41,14 @@ public class TransactionController {
     public ResponseEntity<ListTransactionsResponse> list(
             @AuthenticationPrincipal UserEntity user,
             @RequestParam(required = false) TransactionType type,
+            @RequestParam(required = false) UUID categoryId,
             @RequestParam(required = false) LocalDate startDate,
             @RequestParam(required = false) LocalDate endDate,
             @RequestParam(defaultValue = "true") boolean sortByAsc
     ) {
        ListTransactionsResponse response = listResolver.list(new ListTransactionsInput(
                user.getId(),
+               categoryId,
                type,
                startDate,
                endDate,

@@ -2,7 +2,7 @@ import styles from './Categories.module.css'
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
-import {list} from "../services/categoryService.js";
+import {listCategories} from "../services/categoryService.js";
 import CategoryForm from "../components/CategoryForm.jsx";
 
 function Categories() {
@@ -15,7 +15,7 @@ function Categories() {
         async function fetchCategories() {
             setIsLoading(true)
             try {
-                const data = await list()
+                const data = await listCategories()
                 setCategories(data.categories)
             } catch (err) {
                 console.error("Erro ao carregar categorias", err)

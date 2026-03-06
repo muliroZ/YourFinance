@@ -48,8 +48,9 @@ public class JpaTransactionRepository implements TransactionRepository {
     }
 
     @Override
-    public List<Transaction> search(UUID userId, TransactionType type, LocalDate startDate, LocalDate endDate, Boolean sortByAsc) {
+    public List<Transaction> search(UUID userId, UUID categoryId, TransactionType type, LocalDate startDate, LocalDate endDate, Boolean sortByAsc) {
         Specification<TransactionEntity> spec = Specification.where(TransactionSpecification.byUserId(userId))
+                .and(TransactionSpecification.byCategoryId(categoryId))
                 .and(TransactionSpecification.byType(type))
                 .and(TransactionSpecification.byDateBetween(startDate, endDate));
 

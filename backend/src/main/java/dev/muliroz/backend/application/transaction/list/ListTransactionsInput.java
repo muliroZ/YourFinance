@@ -7,6 +7,7 @@ import java.util.UUID;
 
 public record ListTransactionsInput(
         UUID userId,
+        UUID categoryId,
         TransactionType type,
         LocalDate startDate,
         LocalDate endDate,

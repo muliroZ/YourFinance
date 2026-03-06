@@ -7,7 +7,7 @@ function ItemPanel({ items, noItemsMessage }) {
 
             {items.map((item, index) => (
                 <div key={index} className={styles.panelItem}>
-                    {item}
+                    {item.name}
                 </div>
             ))}
         </div>

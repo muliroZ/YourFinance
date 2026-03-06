@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { list } from "../services/transactionService.js";
+import { listTransactions } from "../services/transactionService.js";
 import styles from './StatementCard.module.css'
 
 function StatementCard({ refreshTrigger }) {
@@ -10,7 +10,7 @@ function StatementCard({ refreshTrigger }) {
         async function fetchTransactions() {
             setLoading(true)
             try {
-                const data = await list({ sortByAsc: false })
+                const data = await listTransactions({ sortByAsc: false })
                 setTransactions(data.transactions)
             } catch (error) {
                 console.error("Erro ao buscar extratos:", error)

@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react"
-import {list} from "../services/categoryService.js"
-import {create} from "../services/transactionService.js"
+import {listCategories} from "../services/categoryService.js"
+import {createTransaction} from "../services/transactionService.js"
 import styles from "./TransactionForm.module.css"
 import CategoryForm from "./CategoryForm.jsx";
 
-function TransactionForm({ onTransactionCreated }) {
+function TransactionForm({ onTransactionCreated, onCategoryCreated }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [refreshKey, setRefreshKey] = useState(0)
     const [categories, setCategories] = useState([])
@@ -19,7 +19,7 @@ function TransactionForm({ onTransactionCreated }) {
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const data = await list()
+                const data = await listCategories()
                 setCategories(data.categories)
             } catch (err) {
                 console.error("Erro ao carregar categorias", err)
@@ -31,6 +31,8 @@ function TransactionForm({ onTransactionCreated }) {
     function handleCategoryCreated() {
         setIsModalOpen(false)
         setRefreshKey(key => key + 1)
+
+        if (onCategoryCreated) onCategoryCreated()
     }
 
     const handleChange = (e) => {
@@ -45,7 +47,7 @@ function TransactionForm({ onTransactionCreated }) {
                 amount: parseFloat(form.amount),
             }
 
-            await create(payload)
+            await createTransaction(payload)
             alert("Transação criada com sucesso")
 
             if (onTransactionCreated) onTransactionCreated()
