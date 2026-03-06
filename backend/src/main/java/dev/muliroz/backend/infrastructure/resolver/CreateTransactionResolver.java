@@ -5,6 +5,8 @@ import dev.muliroz.backend.application.transaction.create.CreateTransactionUseCa
 import dev.muliroz.backend.web.dto.CreateTransactionRequest;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class CreateTransactionResolver {
 
@@ -14,15 +16,15 @@ public class CreateTransactionResolver {
         this.useCase = createTransactionUseCase;
     }
 
-    public void create(CreateTransactionRequest request) {
+    public void create(UUID userId, CreateTransactionRequest request, String idempotencyKey) {
         CreateTransactionInput input = new CreateTransactionInput(
-                request.userId(),
+                userId,
                 request.categoryId(),
                 request.amount(),
                 request.type(),
                 request.date(),
                 request.description(),
-                request.idempotencyKey()
+                UUID.fromString(idempotencyKey)
         );
 
         useCase.execute(input);

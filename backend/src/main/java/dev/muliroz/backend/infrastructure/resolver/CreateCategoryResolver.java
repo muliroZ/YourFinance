@@ -5,6 +5,8 @@ import dev.muliroz.backend.application.category.create.CreateCategoryUseCase;
 import dev.muliroz.backend.web.dto.CreateCategoryRequest;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class CreateCategoryResolver {
 
@@ -14,8 +16,8 @@ public class CreateCategoryResolver {
         this.useCase = useCase;
     }
 
-    public void create(CreateCategoryRequest request) {
-        CreateCategoryInput input = new CreateCategoryInput(request.userId(), request.name());
+    public void create(UUID userId, CreateCategoryRequest request) {
+        CreateCategoryInput input = new CreateCategoryInput(userId, request.name());
         useCase.execute(input);
     }
 }

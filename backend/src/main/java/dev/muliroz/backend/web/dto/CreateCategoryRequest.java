@@ -7,10 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.util.UUID;
 
 public record CreateCategoryRequest(
-        @NotNull(message = "User is mandatory")
-        UUID userId,
-
         @NotBlank(message = "Name is mandatory")
-        @Size(max = 50, message = "Name lenght cannot exceed 50 characters")
+        @Size(max = 50, message = "Name length cannot exceed 50 characters")
         String name
 ) {}

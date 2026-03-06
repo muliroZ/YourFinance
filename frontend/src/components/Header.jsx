@@ -16,13 +16,15 @@ function Header() {
                 <Link to={"/"} className={styles.logoText}>YourFinance</Link>
             </div>
             <nav className={styles.navLinks}>
-                <Link to={"/"}>Home</Link>
+                <Link to={"/"}>Início</Link>
+                <Link to={"/transactions"}>Transações</Link>
+                <Link to={"/categories"}>Categorias</Link>
                 {user ? (
                     <button className={styles.logoutBtn} onClick={logout}>
-                        Logout
+                        Sair
                     </button>
                 ) : (
-                    <Link to={"/auth"}>Login</Link>
+                    <Link to={"/auth"}>Entrar</Link>
                 )}
             </nav>
         </header>

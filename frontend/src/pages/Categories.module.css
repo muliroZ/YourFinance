@@ -1,0 +1,162 @@
+.mainContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.pageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.pageHeader h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.pageHeader p {
+    font-size: 14px;
+    color: #666666;
+}
+
+.newBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .2s, transform .1s;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.3);
+}
+
+.newBtn:hover {
+    background-color: #218838;
+}
+
+.newBtn:active {
+    transform: scale(0.97);
+}
+
+.tableContainer {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eaeaea;
+    overflow-x: auto;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.dataTable th,
+.dataTable td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 15px;
+}
+
+.dataTable th {
+    background-color: #f8f9fa;
+    color: #666666;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dataTable tr:last-child td {
+    border-bottom: none;
+}
+
+.dataTable tr:hover {
+    background-color: #fafbfa;
+}
+
+.nameCell {
+    font-weight: 600;
+    color: #333;
+}
+
+.actionsColumn {
+    text-align: right;
+    width: 150px;
+}
+
+.editBtn, .deleteBtn {
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+.editBtn { color: #007bff; }
+.editBtn:hover { text-decoration: underline; }
+
+.deleteBtn { color: #dc3545 }
+.deleteBtn:hover { text-decoration: underline; }
+
+.loadingState, .emptyState {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+.modalContent {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 20px;
+    animation: slideUp .3s ease-out;
+}
+
+.closeModalBtn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.closeModalBtn:hover {
+    color: #333;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+    }
+}

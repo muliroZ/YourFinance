@@ -11,11 +11,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record CreateTransactionRequest(
-        @NotNull(message = "An user is mandatory") UUID userId,
         @NotNull(message = "Transaction category is mandatory") UUID categoryId,
         @Positive(message = "The amount should be greater than zero") BigDecimal amount,
         @NotNull(message = "Transaction type is mandatory") TransactionType type,
         @PastOrPresent(message = "Transaction date shouldn't be in the future") LocalDate date,
-        @Size(max = 255, message = "Description lenght cannot exceed 255 characters") String description,
-        @NotNull(message = "Idempotency key is missing") UUID idempotencyKey
+        @Size(max = 255, message = "Description length cannot exceed 255 characters") String description
 ) {}

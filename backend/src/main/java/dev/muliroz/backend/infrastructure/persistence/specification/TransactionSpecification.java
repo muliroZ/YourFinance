@@ -13,6 +13,10 @@ public class TransactionSpecification {
         return (root, query, cb) -> userId == null ? null : cb.equal(root.get("userId"), userId);
     }
 
+    public static Specification<TransactionEntity> byCategoryId(UUID categoryId) {
+        return (root, query, cb) -> categoryId == null ? null : cb.equal(root.get("categoryId"), categoryId);
+    }
+
     public static Specification<TransactionEntity> byType(TransactionType type) {
         return (root, query, cb) -> type == null ? null : cb.equal(root.get("type"), type);
     }

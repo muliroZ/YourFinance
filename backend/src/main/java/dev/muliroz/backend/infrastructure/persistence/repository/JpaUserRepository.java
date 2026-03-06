@@ -36,15 +36,13 @@ public class JpaUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        UserEntity userEntity = repository.findByEmail(email);
-        User user = new User(
-                userEntity.getId(),
-                userEntity.getName(),
-                userEntity.getEmail(),
-                userEntity.getPassword()
-        );
-
-        return Optional.of(user);
+        return repository.findByEmail(email)
+                .map(entity -> new User(
+                        entity.getId(),
+                        entity.getName(),
+                        entity.getEmail(),
+                        entity.getPassword()
+                ));
     }
 
     @Override
