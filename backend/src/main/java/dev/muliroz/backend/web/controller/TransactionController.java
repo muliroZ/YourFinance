@@ -5,9 +5,12 @@ import dev.muliroz.backend.domain.enums.TransactionType;
 import dev.muliroz.backend.infrastructure.persistence.model.UserEntity;
 import dev.muliroz.backend.infrastructure.resolver.CreateTransactionResolver;
 import dev.muliroz.backend.infrastructure.resolver.ListTransactionsResolver;
+import dev.muliroz.backend.infrastructure.resolver.UpdateTransactionResolver;
 import dev.muliroz.backend.web.dto.CreateTransactionRequest;
 import dev.muliroz.backend.web.dto.ListTransactionsResponse;
+import dev.muliroz.backend.web.dto.UpdateTransactionRequest;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +24,12 @@ public class TransactionController {
 
     private final CreateTransactionResolver createResolver;
     private final ListTransactionsResolver listResolver;
+    private final UpdateTransactionResolver updateResolver;
 
-    public TransactionController(CreateTransactionResolver createResolver, ListTransactionsResolver listResolver) {
+    public TransactionController(CreateTransactionResolver createResolver, ListTransactionsResolver listResolver, UpdateTransactionResolver updateResolver) {
         this.createResolver = createResolver;
         this.listResolver = listResolver;
+        this.updateResolver = updateResolver;
     }
 
     @PostMapping
@@ -56,5 +61,14 @@ public class TransactionController {
        ));
 
        return ResponseEntity.status(200).body(response);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> update(
+            @AuthenticationPrincipal UserEntity user,
+            @Valid @RequestBody UpdateTransactionRequest request
+    ) {
+        updateResolver.update(user.getId(), request);
+        return ResponseEntity.status(200).build();
     }
 }

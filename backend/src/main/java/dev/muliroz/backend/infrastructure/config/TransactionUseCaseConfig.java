@@ -2,6 +2,7 @@ package dev.muliroz.backend.infrastructure.config;
 
 import dev.muliroz.backend.application.transaction.create.CreateTransactionUseCase;
 import dev.muliroz.backend.application.transaction.list.ListTransactionsUseCase;
+import dev.muliroz.backend.application.transaction.update.UpdateTransactionUseCase;
 import dev.muliroz.backend.domain.gateway.TransactionRepository;
 import dev.muliroz.backend.domain.gateway.UserRepository;
 import org.springframework.context.annotation.Bean;
@@ -30,5 +31,10 @@ public class TransactionUseCaseConfig {
                 transactionRepository,
                 userRepository
         );
+    }
+
+    @Bean
+    public UpdateTransactionUseCase updateTransactionUseCase(TransactionRepository transactionRepository) {
+        return new UpdateTransactionUseCase(transactionRepository);
     }
 }
